@@ -15,7 +15,7 @@ const ModelsWrapper: React.FC = ({ children }) => {
 
   const unregisterModel = useCallback((modelName: string) => {
     setRegisterModels((state) =>
-      state.filter((model) => model.modelName != modelName)
+      state.filter((model) => model.modelName !== modelName)
     );
   }, []);
 
@@ -41,7 +41,9 @@ const ModelsWrapper: React.FC = ({ children }) => {
       <Container ref={wrapperRef}>
         <OverlaysRoot>
           {registeredModels.map((item) => (
-            <ModelOverlay key={item.modelName}>{item.overlayNode}</ModelOverlay>
+            <ModelOverlay key={item.modelName} model={item}>
+              {item.overlayNode}
+            </ModelOverlay>
           ))}
         </OverlaysRoot>
 
